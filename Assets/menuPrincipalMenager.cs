@@ -5,6 +5,27 @@ public class menuPrincipalMenager : MonoBehaviour
 {
     [SerializeField] private GameObject menuMain;
     [SerializeField] private GameObject menuoptions;
+    [SerializeField] private GameObject menuControl;
+    [SerializeField] private GameObject MenuCredits;
+    [SerializeField] private RectTransform creditosContent;
+    [SerializeField] private float velocidadeCreditos = 50f;
+    [SerializeField] private float posicaoInicialY = -600f;
+    [SerializeField] private float posicaoFinalY = 600f;
+
+    private bool creditosAtivos = false;
+
+    void Update()
+    {
+        if (creditosAtivos)
+        {
+            creditosContent.anchoredPosition += Vector2.up * velocidadeCreditos * Time.deltaTime;
+
+            if (creditosContent.anchoredPosition.y >= posicaoFinalY)
+            {
+                fecharCredits(); 
+            }
+        }
+    }
 
     public void jogar()
     {
@@ -22,13 +43,32 @@ public class menuPrincipalMenager : MonoBehaviour
         menuMain.SetActive(true);
         
     }
+    public void abrirControl()
+    {
+       
+        menuControl.SetActive(true);
+
+    }
+    public void FecharControl()
+    {
+        menuControl.SetActive(false);
+       
+    }
     public void abrirCredits()
     {
+        menuMain.SetActive(false);
+        MenuCredits.SetActive(true);
+        creditosAtivos = true;
 
+  
+        Vector2 pos = creditosContent.anchoredPosition;
+        pos.y = posicaoInicialY;
+        creditosContent.anchoredPosition = pos;
     }
     public void fecharCredits()
     {
-
+        MenuCredits.SetActive(false);
+        menuMain.SetActive(true);
     }
 
 }
