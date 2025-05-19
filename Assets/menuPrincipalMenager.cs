@@ -9,7 +9,7 @@ public class menuPrincipalMenager : MonoBehaviour
     [SerializeField] private GameObject MenuCredits;
     [SerializeField] private RectTransform creditosContent;
     [SerializeField] private float velocidadeCreditos = 50f;
-    [SerializeField] private float posicaoInicialY = -600f;
+    [SerializeField] private float posicaoInicialY = -400f;
     [SerializeField] private float posicaoFinalY = 600f;
 
     private bool creditosAtivos = false;
@@ -45,14 +45,14 @@ public class menuPrincipalMenager : MonoBehaviour
     }
     public void abrirControl()
     {
-       
+        menuoptions.SetActive(false) ;
         menuControl.SetActive(true);
 
     }
     public void FecharControl()
     {
         menuControl.SetActive(false);
-       
+       menuoptions.SetActive(true);
     }
     public void abrirCredits()
     {
